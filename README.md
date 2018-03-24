@@ -8,6 +8,20 @@ Spawn a simple zeroconf service over the local network
 go get -u github.com/sosedoff/zeroconf-beacon
 ```
 
+Using make:
+
+```
+make install
+```
+
+Build binaries:
+
+```
+make linux
+make osx
+make all
+```
+
 ## Usage
 
 ```
