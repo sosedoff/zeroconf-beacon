@@ -1,6 +1,6 @@
 # zeroconf-beacon
 
-Spawn a simple zeroconf service over the local network
+Spawn a simple [zeroconf][0] service over the local network
 
 ## Install
 
@@ -80,3 +80,5 @@ $ avahi-browse -r _http._tcp
 ## License
 
 MIT
+
+[0]: https://en.wikipedia.org/wiki/Zero-configuration_networking
