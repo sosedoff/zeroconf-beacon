@@ -4,6 +4,7 @@ import (
 	"flag"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/grandcat/zeroconf"
 )
@@ -13,6 +14,7 @@ var (
 	protocol string
 	domain   string
 	port     int
+	txt      string
 )
 
 func init() {
@@ -20,6 +22,7 @@ func init() {
 	flag.StringVar(&protocol, "protocol", "_http._tcp", "Service protocol")
 	flag.StringVar(&domain, "domain", "local.", "Service domain")
 	flag.IntVar(&port, "port", 80, "Service port")
+	flag.StringVar(&txt, "txt", "", "Service text records: foo=bar,hello=world")
 	flag.Parse()
 
 	if name == "" {
@@ -41,7 +44,14 @@ func main() {
 	)
 	defer log.Println("stopping zeroconf service")
 
-	server, err := zeroconf.Register(name, protocol, domain, port, []string{}, nil)
+	server, err := zeroconf.Register(
+		name,
+		protocol,
+		domain,
+		port,
+		strings.Split(txt, ","),
+		nil,
+	)
 	if err != nil {
 		log.Fatal("zeroconf server error:", err)
 	}
